@@ -13,7 +13,7 @@ const About = () => {
         />
       </div>
       <div>
-        <h3 className="capitalize font-bold text-red">About us</h3>
+        <h3 className="capitalize font-bold text-red text-xl">About us</h3>
         <h2 className="pt-5 pb-[30px] text-[45px]  font-bold">
           We are qualified & of experience in this field
         </h2>
