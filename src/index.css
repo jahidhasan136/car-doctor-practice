@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn_primary {
+  @apply bg-red px-7 py-4 rounded-[5px] text-white capitalize;
+}
+
+.btn_outline {
+  @apply px-7 py-4 border border-red rounded-[5px] text-red font-semibold text-lg;
+}

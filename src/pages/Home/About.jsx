@@ -30,9 +30,7 @@ const About = () => {
             believable.{" "}
           </p>
         </div>
-        <button className="bg-red px-7 py-4 rounded-[5px] text-white capitalize">
-          Get more info
-        </button>
+        <button className="btn_primary">Get more info</button>
       </div>
     </div>
   );

@@ -27,9 +27,7 @@ const Header = () => {
       <div className="flex gap-5 items-center">
         <HiOutlineShoppingBag />
         <CiSearch />
-        <button className="px-7 py-4 border border-red rounded-[5px] text-red font-semibold text-lg">
-          Appointment
-        </button>
+        <button className="btn_outline">Appointment</button>
       </div>
     </div>
   );
