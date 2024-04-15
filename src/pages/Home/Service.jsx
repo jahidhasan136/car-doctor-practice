@@ -1,7 +1,18 @@
-import { FaArrowRight } from "react-icons/fa";
-import serviceImg from "../../assets/serviceImg.png";
+import { useEffect, useState } from "react";
+import ServiceCard from "../../sections/ServiceCard";
 
 const Service = () => {
+  const [service, setSerivce] = useState([]);
+
+  useEffect(() => {
+    fetch("services.json")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSerivce(data);
+      });
+  }, []);
+
   return (
     <div className="mt-[130px]">
       {/* service heading contents */}
@@ -20,66 +31,9 @@ const Service = () => {
       {/* service cart */}
       <div>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
-          <div className="grid gap-5 p-[25px] border border-[#E8E8E8] rounded-[10px]">
-            <img src={serviceImg} alt="" />
-            <h2 className="text-2xl font-bold text-[#444444]">
-              Electrical System
-            </h2>
-            <div className="flex justify-between items-center">
-              <h3 className="text-red text-xl font-bold">price: $20.00</h3>
-              <FaArrowRight className="text-red" />
-            </div>
-          </div>
+          {service?.map((item) => (
+            <ServiceCard key={item._id} serviceItem={item} />
+          ))}
         </div>
         <div className="flex justify-center mt-[50px]">
           <button className="btn_outline">More Services</button>
