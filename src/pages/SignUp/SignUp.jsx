@@ -1,9 +1,30 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import authImg from "../../assets/authImg.png";
 import facebookIcon from "../../assets/facebookIcon.png";
 import googleIcon from "../../assets/googleIcon.png";
 import linkedinIcon from "../../assets/linkedinIcon.png";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log("created user", user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex justify-around items-center pt-[23px]">
       <img src={authImg} alt="" />
@@ -11,13 +32,14 @@ const SignUp = () => {
         <h1 className="text-center mb-[50px] font-semibold text-[40px]">
           Sign up
         </h1>
-        <form className="grid gap-7" action="">
+        <form onSubmit={handleSignup} className="grid gap-7" action="">
           <div className="grid gap-[10px]">
             <label htmlFor="" className="font-semibold text-lg">
               Name
             </label>
             <input
               className="px-[25px] py-[15px] text-[#A2A2A2] rounded-[10px] border border-gray w-[461px]"
+              name="name"
               type="text"
               placeholder="Your name"
             />
@@ -28,6 +50,7 @@ const SignUp = () => {
             </label>
             <input
               className="px-[25px] py-[15px] text-[#A2A2A2] rounded-[10px] border border-gray w-[461px]"
+              name="email"
               type="email"
               placeholder="Your email"
             />
@@ -38,6 +61,7 @@ const SignUp = () => {
             </label>
             <input
               className="px-[25px] py-[15px] text-[#A2A2A2] rounded-[10px] border border-gray w-[461px]"
+              name="password"
               type="password"
               placeholder="Your password"
             />
@@ -64,7 +88,9 @@ const SignUp = () => {
         </form>
         <h2 className="text-lg text-[#737373] mt-[50px] text-center">
           Already have an account?{" "}
-          <span className="text-[#FF3811] font-bold">Login</span>
+          <Link to="/users/login" className="text-[#FF3811] font-bold">
+            Login
+          </Link>
         </h2>
       </div>
     </div>
